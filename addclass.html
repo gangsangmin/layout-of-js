@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        *{
+            padding:0;
+            list-style: none;
+     
+        }
+        ul{
+            display: flex;
+            margin: 0 auto;
+        }
+        li{
+            width:30px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+        li.on{
+            background-color: red;
+        }
+        /* addclass를 쓰려고 하는 거임 */
+
+        div{
+            width: 50px;
+            height: 50px;
+            margin: 10px auto;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <ul>
+        <li class="list1"></li>
+        <li class="list2"></li>
+        <li class="list3"></li>
+        <li class="list4"></li>
+        <li class="list5"></li>
+    </ul>
+
+ 
+
+
+    <script src = "js/jquery-3.6.0.min.js"></script>
+    <script src = "js/jquery-ui.min.js"></script>
+    
+    <script>
+        //$(sel).addClass("class name");
+
+
+        $("ul li").on("click",function(){
+            $(this).addClass("on");
+            $(this).siblings().removeClass("on")
+        })//이걸 사용하면 제이쿼리의 단점을 상쇄시킬수 있다.
+        
+        var check = $(this).hasClass("list3")
+        console.log(check);
+        //선택자에게 특정 클래스명이 존재하는지 확인하는것
+
+
+    </script>
+</body>
+</html>

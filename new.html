@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-size:14px;
+            color:#333;
+            list-style: none;
+        }
+        div,p, ul, li,h1,h3{
+            margin:10px;
+            padding:10px;
+            border :1px solid #aaa;
+        }
+
+        .select{
+            background-color: #ccc;
+        }
+
+        strong{
+            background-color: #ccc;
+        }
+
+        .test1{
+            border-color:#f06;
+        }
+
+        .test2{
+            border-color:#08f;
+        }
+
+
+    </style>
+    
+</head>
+<body>
+    <div id="wrap">
+        div, #wrap
+        <div class="header">
+            div, .header
+            <h1>h1</h1>
+            <p class="tit">p, .tit</p><!--.tit-->
+            <p class="test2">p, .test2</p><!--.test2-->
+        </div><!--.header-->
+    
+        <div class="section">
+            div, .section
+            <ul class="menu">
+                ul, .menu
+                <li>list1</li>    
+                <li>list2</li>    
+                <li class="select">list3, .select</li>
+                <li>list4</li>    
+                <li>list5</li>    
+            </ul><!--.menu-->    
+    
+            <div class="box">
+                div, .box
+                <p>p</p>
+                <p>p <strong>strong</strong></p>
+                <p>p <strong>strong</strong></p>
+            </div><!--.box-->
+    
+            <p class="test1">p, .test1</p>
+            <p class="test2">p, .test2</p>
+        </div><!--.section-->
+    
+        <div class="content">
+            div, .content
+            <div class="con">
+                div, .con
+                <h3>h3</h3>
+    
+                <ul class="list">
+                    ul, .list
+                    <li>li</li>    
+                    <li class="test2">li, .test2</li>    
+                    <li>li 
+                    <strong class="st">strong, .st</strong></li>   
+                </ul><!--.list-->    
+            </div><!--.con-->
+    
+            <div class="space">
+                div, .space
+                <div class="item">div, .item</div>
+                <div class="item">div, .item</div>
+                <div class="item">div, .item</div>
+            </div><!--.space-->
+        </div><!--.content-->
+      
+        <div class="footer">
+            div, .footer
+            <h1 class="flogo">h1, .flogo</h1>
+            <ul class="fmenu">
+                ul, .fmenu  
+                <li>li</li>  
+                <li class="test1">li</li>  
+                <li>li</li>  
+                <li>li 
+                <strong class="st">strong, .st</strong></li>
+            </ul><!--.fmenu--> 
+    
+            <div class="cr">
+                div,.cr
+                <div class="box">
+                    div, .box
+                    <p>p</p>
+                    <p class="test1">p, .test1</p>
+                    <p class="test2">p, .test2</p>
+                </div><!--.box-->
+        
+                <div class="box">
+                    div, .box
+                    <p>p</p>
+                    <p class="test1">p, .test1</p>
+                    <p class="test2">p, .test2</p>
+                </div><!--.box-->
+            </div><!--.cr-->
+          
+        </div><!--.footer-->
+       
+        
+    </div><!--#wrap-->
+     
+    <script src= "js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        //javascript libraly 중에 하나
+        //interactive web 구현을 목적으로 둠.
+        $("h1").css("backgroundColor", "green")
+        //css 속성 한개 적용(함수타입)
+
+        $("h1").css({
+            "backgroundColor" : "green",
+            "color" : "orange"
+        })//여러줄 삽입 (객체타입, JSON타입)
+
+
+        $(".header").children().css("backgroundColor","pink")
+        $(".section").children().css("borderColor", "darkgreen")
+        //.children()자식 찾는 매서드 (매서든 코드 덩어리)
+        //바로 아래의 자식 노드만 잡는다.
+        $(".section").children(".test2").css("backgroundColor","red")
+
+
+
+
+        //find() 후손을 탐색하는 매서드
+        //반드시 어떤 후손을 찾는지 명시해야됨.
+        $(".section").find(".test1").css("borderWidth","10px")
+
+        
+
+        //형제찾기
+        $(".select").next().css("borderColor","red")//다음형제
+        $(".select").prev().css("borderColor","teal")//이전형제
+        $(".select").nextAll().css("color","magenta")
+        $(".select").prevAll().css("color","olive")//모두선택
+        
+        
+        
+        
+        $(".select").siblings().css("color","#orange")//선택자를 제외한 모든형제를 선택
+
+        
+
+        //순서(index)로 접근
+
+        $(".box p").eq(0).css("backgroundColor","darkgreen")
+        // $(".box p").first().css
+        // $(".box p").last().css
+
+
+
+
+
+        
+        
+        //부모찾기 매서드 >>> 바로 상위노드 (직계 부모 요소)
+        $("h3").parent().css("borderColor","magenta")
+        //바로 상위 노드
+        $("h3").parents().css("borderWidth","10px")
+        //모든 조상요소 
+
+        
+
+
+    </script>
+</body>
+</html>

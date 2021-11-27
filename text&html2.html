@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap{
+            padding-top: 100px;
+        }
+
+        .output{
+            width: 1000px;
+            height: 450px;
+            line-height: 450px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: fantasy;
+            color: dodgerblue;
+            font-size: 150px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            margin: 0 auto 30px;
+        }
+
+        .btn{
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            width: 700px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .btn li{
+            padding: 10px 22px;
+            background-color: rgba(255,255,255,0.3);
+            color: dodgerblue;
+            border-radius: 50px;
+        }
+
+        .btn li:first-child{background-color: #fff;}
+        body{background-color: dodgerblue;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="output">dodgerblue</div>
+        <ul class="btn">
+            <li>dodgerblue</li>
+            <li>magenta</li>
+            <li>orange</li>
+            <li>seagreen</li>
+            <li>tomato</li>
+            <li>purple</li>
+        </ul>
+    </div>
+
+
+    <script src = "js/jquery-3.6.0.min.js"></script>
+    <script>
+        
+      
+
+        $(".btn li").on("click",function(){
+            var color = $(this).text();
+
+            $("body").css("backgroundColor",color);
+            $(".output").css("color",color);
+            $(".btn li").css("color",color);
+            $(".output").text(color);
+
+          
+            $(".btn li").css("backgroundColor","rgba(255,255,255,0.3)")
+            $(this).css("backgroundColor","#fff");
+        })
+        
+
+
+         
+
+        
+    </script>
+</body>
+</html>

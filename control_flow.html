@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //제어문(Control Flow)
+        // 1. 조건문 (if문)
+        /*
+            조건식의 참과 거짓의
+            판별 결과에 따라
+            실행 될 코드블럭을 결정
+
+            -조건식?
+               참/거짓으로 반환되는 연산식
+            
+            -코드블럭?
+               실행 될 코드 덩어리
+               {}안에 작성(블록문)
+
+            if(조건식){
+                조건식이 참일 경우
+                실행 될 실행 구문
+                .
+                .
+            } else {
+                조건식이 거짓일 경우...
+            }
+        */
+
+        var a = 100;
+        var b = 200;
+
+        // if(a>b){
+        //     console.log("a는 b보다 작습니다.")
+        //     // 조건식이 거짓일 경우 실행안됨
+        // }
+
+        /*
+            사용자에게 신발 사이즈를 물어보고,
+            입력받은 사이즈가 270이상이면,
+            "재고가 없습니다."출력하기
+        */ 
+        var size = prompt("사이즈를 입력해주세요");
+        
+        if(size >= 270){
+            document.write("재고가 없습니다.");
+        }
+         else {
+            document.write("재고가 있습니다.")
+        }
+
+    </script>
+</body>
+</html>

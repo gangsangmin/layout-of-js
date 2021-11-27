@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: inherit;
+            text-decoration: none;
+            vertical-align: top;
+            font-family: nanumsquare;
+        }
+
+        h1{
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: #fff;
+            z-index: 99999;
+        }
+
+        header .gnb{
+            position: fixed;
+            top: 30px;
+            right: 30px; 
+            color: #fff; font-size: 20px;
+            text-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+            display: flex; z-index: 9999;
+        }
+
+        header .gnb li{margin-left: 15px;}
+
+        .s1{
+            height: 123vh;
+            line-height: 100vh;
+            background-color: darkgoldenrod;
+            color: #f5f5f5;
+            font-size: 130px;
+            text-align: center;
+        }
+
+        .carousel{
+            background-color: darkolivegreen;
+            position: relative;
+        }
+
+        .carousel .wrap{
+            height: 100vh;
+            /* position: fixed; */
+            position: relative;
+            top: 0; left: 0;
+        }
+
+        .carousel .wrap .track{
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .carousel .wrap .track .item{
+            width: 270px;
+            height: 400px;
+            margin: 0 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .s3{
+            height: 234vh;
+            background-color: darkkhaki;
+            color: #fff;
+            text-align: center;
+            font-size: 80px;
+            line-height: 100vh;
+        }
+
+        .item img{
+            min-height: 100%;
+            min-width: 100%;
+            object-fit: cover;/*이미지/비디오 크기 조절*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s;
+
+        }
+
+        .item .txt{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .item .txt h3{
+            padding: 10px;
+            color: #fff;
+            transition: all 0.3s;
+            text-shadow: 3px 3px 3px rgba(0,0,0,0.15);
+        }
+        .item .txt .info{
+            padding: 10px;
+            background-color: rgba(0,0,0,0.4);
+            transition: all 0.3s;
+        }
+        .item .txt .info .writer{
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .item .txt .info .desc{
+            margin-top: 10px;
+            font-size: 12px;
+            color: #ddd;
+        }
+
+        .item:hover h3{padding: 15px; font-size: 20px;}
+        .item:hover img{transform: translate(-50%, -50%) scale(1.2);}
+        .item:hover .txt{background-color: rgba(0,0,0,0.4);}
+        .item:hover .txt .info{padding: 10px 10px 30px 10px;background-color: transparent;}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>COMPANY LOGO</h1>
+        <div class="gnb">
+            <li><a href="#">Section#1</a></li>
+            <li><a href="#">Section#2</a></li>
+            <li><a href="#">Section#3</a></li>
+        </div>
+    </header>
+    <section class="s1">
+        SECTION1
+    </section>
+    <section class="carousel">
+        <div class="wrap">
+            <div class="track">
+                
+            </div><!--track-->
+        </div><!--wrap-->
+    </section><!--section : carousel-->
+    <section class="s3">
+        Another contents below...
+    </section>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        var imgSrc = [
+            "a1.jfif",
+            "a2.jfif",
+            "a3.jfif",
+            "a4.jfif",
+            "a5.jfif",
+            "a6.jfif",
+            "a7.jfif",
+            "a8.jfif",
+            "a9.jpg",
+            "a10.jpg" 
+        ];
+
+        for(i=0; i<20; i++){
+            var item = `
+                <div class="item">
+                    <a href="#">
+                        <img src="images/${imgSrc[i%10]}" alt="">
+                        <div class="txt">
+                            <h3>Artwork #${i+1}</h3>
+                            <div class="info">
+                                <p class="writer">
+                                    <span class="name">Artist</span>
+                                    <span class="date">2021-09-28</span>
+                                </p>
+                                <p class="desc">
+                                    Lorem Ipsum is simply dummy text of the printing Materials
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            $(".track").append(item);
+        }
+
+        function setTrack(exp) {
+            // 매개변수 exp는 확장되면서 추가되는 너비값
+            var itemLen = $(".track .item").length;
+            var wholeWidth = 0;
+            for(i=0; i<itemLen; i++){
+                wholeWidth += ($(".item").eq(i).width() + 30);
+            }
+            $(".track").width(wholeWidth + exp);
+            $("section.carousel").height(wholeWidth + exp);
+        }//fn
+        setTrack(0);//전역실행
+
+        function itemExp(sel, itemW, itemH) {
+            $(sel).stop().animate({
+                "width" : itemW,
+                "height" : itemH
+            }).siblings().stop().animate({
+                "width" : "270px",
+                "height" : "400px"
+            });
+        }//클릭 된 아이템 확장시키는 애니메이션
+
+        $(".item a").on("click", function(e){
+            e.preventDefault();
+            // a tag의 href기능을 삭제함.
+            // 새로고침되는 것을 막음.
+        });
+
+        $(".track .item").on("click", function() {
+            $(this).addClass("expand").siblings().removeClass("expand")
+            
+            var nW = $(this).find("img").get(0).naturalWidth;
+            var nH = $(this).find("img").get(0).naturalHeight;
+            // 이미지의 네추럴사이즈(원본사이즈) 가져오기
+            var mW = $(window).width() / 3 * 2 
+            var mH = $(window).height() / 2 * 2
+            //최대너비(모니터 크기의 2/3)
+            
+            var rat = nW / nH //비(ratio)
+            var expandWidth;//확장 될 너비값
+
+            if(rat === 1 && nW > mW || nH > mH){ //1:1비율
+                itemExp($(this), mW, mH);
+                setTrack(mW - 270);
+                expandWidth = mW;
+            } else if(rat > 1 && nW > mW){ //가로가 긴
+                itemExp($(this), mW, mW / rat);
+                setTrack(mW - 270);
+                expandWidth = mW;
+            } else if(rat < 1 && nH > mH){ //세로가 긴
+                itemExp($(this), mH * rat ,mH);
+                setTrack(mH * rat - 270);
+                expandWidth = mH * rat;
+            } else { // 그 외(너비와 높이 모두 최대 사이즈 이내인 이미지)
+                itemExp($(this), nW, nH);
+                setTrack(nW - 270);
+                expandWidth = nW;
+            }
+            // 원본사이즈의 비율과 크기에 따라 서로 다른 애니메이트 실행
+
+            //확장 된 .item이 window를 기준으로 가운데에 오도록 스크롤 움직이기
+            var windowHalf = $(window).width() / 2;//윈도우 너비 1/2
+            var idx = $(this).index();//index
+            var sumPrevAll = ($(".item").width() + 30) * idx;//이전형제들 너비 총합
+            var expandHalf = (expandWidth + 30) / 2;
+            var prevSection = $(".carousel").offset().top;
+
+            $("html, body").stop().animate({
+                "scrollTop" : (sumPrevAll + expandHalf) - windowHalf + prevSection
+            })
+
+            if(sumPrevAll > windowHalf){
+                $("html, body").stop().animate({
+                    "scrollTop" : (sumPrevAll + expandHalf) - windowHalf + prevSection
+                });
+            } else {
+                $("html, body").stop().animate({
+                    "scrollTop" : $(".carousel").offset().top
+                });
+            }
+        });// click evt 
+
+        $(window).on("scroll", function() {
+            var scr = $(this).scrollTop();
+
+            var fixStart = $(".carousel").offset().top;
+            var fixEnd = $(".s3").offset().top - $(window).height();
+
+            if(scr >= fixStart && scr <= fixEnd){
+                // 고정구간
+                $(".carousel .wrap").css({
+                    "position" : "fixed",
+                    "top" : 0,
+                    "bottom" : "unset",
+                    "left" : -scr + fixStart
+                });
+            } else if(scr > fixEnd){
+                $(".carousel .wrap").css({
+                    "position" : "absolute",
+                    "top" : "unset",
+                    "bottom" : 0,
+                })
+            } else if (scr < fixStart){
+                $(".carousel .wrap").css({
+                    "position" : "absolute",
+                    "top" : 0,
+                    "bottom" : "unset",
+                    "left" : 0
+                });
+            }
+        });
+    </script>
+</body>
+</html>

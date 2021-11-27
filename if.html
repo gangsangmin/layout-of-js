@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+    <script>
+
+        /*
+            if(조건식1){
+                조건식 1이 참일 경우
+            } else if(조건식2){
+                조건식2가 참일 경우
+            } else if(조건식n){
+                조건식n이 참일 경우
+            } else{
+                그 어떠한 조건식에도 참이 아닐 경우 실행
+            }
+        */
+        /*
+            상용자의 나이를 입력받은 다음, 
+            사용자의 연령이 65세 이상이면 
+            50% 할인입니다
+
+            사용자의 연령이 7세 미만이면 = > 무료입장입니다.
+
+            그 외, 정상요금입니다.
+
+        
+        */
+
+        /*
+        입력받은 번호가 
+
+        1111 > 아이폰12프로맥스 당첨
+        2222 > 맥북프로 14인치 당첨
+        3333 > 아이맥 당첨
+        4444 > 신세계 상품권 당첨
+        그 외 > 꽝 다음 기회에!
+        */
+
+
+        // var old = prompt("나이를 입력하세요.");
+        // if(old>=65){
+        //     document.write("50%할인입니다.");
+        // }else if(old<7){
+        //     document.write("무료입장입니다.")
+        // }else{
+        //     document.write("정상요금입니다.")
+        // }//최후의 마지막 식
+
+
+        var num = prompt("번호를 입력하세요");
+        if(num == 1111){
+            alert("아이폰12프로맥스 당첨")
+        }else if( num == 2222){
+            alert("맥북프로 14인치 당첨")
+        }else if( num == 3333){
+            alert("아이맥 당첨")
+        }else if( num == 4444){
+            alert("신세계 상품권 당첨")
+        }else{
+            alert("꽝! 다음기회에")
+        }
+
+    </script>
+</body>
+</html>

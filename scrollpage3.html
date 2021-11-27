@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style:none;
+        }
+        h1{
+            position:fixed;
+            top:20px;
+            left:20px;
+            color:#fff;
+            font-family: Nanumsquare;
+        }
+        .info{
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            padding: 25px;
+            transform-origin: left top;
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+
+        .info.on{transform: scale(1);}
+
+        .info .txt{
+            position: relative;
+            z-index: 999;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .info i{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 10px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .info::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            border-radius: 0 5px 5px 5px;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 5px 8px 0 rgba(0,255,255,0.35), -5px 0 8px rgba(255,0,255,0.35);
+            backdrop-filter: blur( 6.5px );
+        }
+        .gnb{
+            display:flex;
+            position:fixed;
+            top:20px;
+            right:20px;
+            
+        }
+
+        .gnb li{
+            margin-left:8px;
+            font-size:14px;
+            color:#fff;
+            font-family: Nanumsquare;
+            font-weight: bold;
+            
+           
+   
+
+        }
+
+        .gnb .on{
+            border-bottom:1px solid #000;
+            color:#000;
+        }
+
+        main section{
+            height: 100vh;
+            line-height: 100vh;
+            font-size:100px;
+            text-align: center;
+            font-family: Nanumsquare;
+            font-weight: bold; 
+        }
+
+        .s1{background-color: dodgerblue;}
+        .s2{background-color: royalblue;}
+        .s3{background-color: darkslateblue;}
+        .s4{background-color: darkslategrey;}
+        .s5{background-color: darkolivegreen;}
+
+      
+
+    </style>
+</head>
+
+<body>
+    <h1>logo</h1>
+    
+    <ul class="gnb">
+        <li>section1</li>
+        <li>section2</li>
+        <li>section3</li>
+        <li>section4</li>
+        <li>section5</li>
+    </ul>
+    <main>
+        <section class = "s1">SECTION1</section>
+        <section class = "s2">SECTION2</section>
+        <section class = "s3">SECTION3</section>
+        <section class = "s4">SECTION4</section>
+        <section class = "s5">SECTION5</section>
+    </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        $("h1").on("click",function(){$(".info").addClass("on");});
+        $(".info i").on("click", function() {$(".info").removeClass("on");})
+
+        // Q1. li들을 클릭하면
+        //  해당되는 섹션으로 스크롤바 이동시키기
+        //  +)클릭된 li는 하이라이트주기
+        
+        $(".gnb li").on("click", function() {
+            $(this).addClass("on").siblings().removeClass("on");
+
+            var i = $(this).index();
+            var secOffset = $("section").eq(i).offset().top    
+
+            $("html, body").stop().animate({
+                "scrollTop" : secOffset
+            });
+        })//event
+
+        //전역변수
+        var secLen = $("section").length;//섹션의 개수 구하기
+        function highlight() {
+            var scr = $(window).scrollTop();
+            
+            for(i=0;i<secLen; i++){
+                var prevOffset = $("section").eq(i).offset().top;
+                var nextOffset = $("section").eq(i+1).offset().top;
+
+                if(scr >= prevOffset && scr < nextOffset){
+                    $(".gnb li").eq(i).addClass("on").siblings().removeClass("on");
+                } else if(scr >= $("section").eq(secLen-1).offset().top){
+                    $(".gnb li").eq(secLen-1).addClass("on").siblings().removeClass("on");
+                }
+            }
+        }
+        
+        $(window).on("scroll", function() {
+            highlight();//스크롤 발생 시 실행
+        });
+
+        $(window).on("resize", function() {
+            highlight();//윈도우 리사이즈 시 실행
+        });
+
+        highlight();//페이지 로드되면 실행
+
+        
+    </script>
+    
+</body>
+</html>

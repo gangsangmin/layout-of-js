@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        #container{
+            padding:2% 7%;
+            display:flex;
+            justify-content: space-between;
+        }
+
+        #container .column{
+            width:30%;
+            
+        }
+
+        #container .column .thumb{
+            margin-bottom: 3vw;
+            
+        }
+
+        #container .column .thumb img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+    
+        .popup{
+            position:fixed;
+            width:100%;
+            height: 100%;;
+            top:0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display:none;
+        }
+
+        .popup .photo{
+          
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .popup .photo img{
+            max-width: 70vw;
+            max-height: 80vw;
+        }
+
+        .close{
+            width:100%;
+            height: 100%;
+        }
+
+        
+
+    </style>
+
+</head>
+<body>
+    <!-- 모달 팝업과 레이아웃 팝업이있다.
+        
+    -->
+    <div id="container">
+        <div class="column">
+            <div class="thumb"><img src="images/a1.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a2.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a3.jfif" alt=""></div>
+        </div>
+        <div class="column">
+            <div class="thumb"><img src="images/a4.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a5.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a6.jfif" alt=""></div>              
+        </div>
+        <div class="column">
+            <div class="thumb"><img src="images/a7.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a8.jfif" alt=""></div>
+            <div class="thumb"><img src="images/a9.jfif" alt=""></div>
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="close"></div>
+        <div class="photo"></div>
+    </div>
+
+
+
+    <script src = "js/jquery-3.6.0.min.js"></script>
+    <script>
+        //썸네일을 클릭하면 이미지가 확장되는 modal popup 구현하기
+        $(".thumb").on("click", function() {
+            var photo = $(this).html();
+
+            $(".popup").fadeIn();
+            $(".popup .photo").html(photo);    
+        });
+
+
+
+        $(".popup .close").on("click", function(){
+            $(".popup").fadeOut();
+           
+            
+            
+            //이벤트 캡처링이라고 한다.
+            //전파성 때문에 그런거다. 
+            //stopPropagation을 사용하면 이벤트 캡쳐링을 할수 있다.
+            //gallery2 보면 된다..
+            
+             
+        })
+    
+    </script>
+
+</body>
+</html>

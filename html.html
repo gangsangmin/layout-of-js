@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+
+        .wrap{
+            width: 1000px;
+            height: 600px;
+            border: 5px solid #000;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .wrap div{
+            width: 100%; height: 100%;
+            text-align: center;
+            line-height: 600px;
+            font-size: 120px;
+            color: #fff;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .wrap .con1{background-color: dodgerblue; display: block;}
+        .wrap .con2{background-color: darkorchid;}
+        .wrap .con3{background-color: darkorange;}
+        .wrap .con4{background-color: seagreen;}
+        .wrap .con5{background-color: tomato;}
+
+        .prev{
+            position: fixed;
+            top: 40%;
+            left: 50px;
+            padding: 15px 30px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .next{
+            position: fixed;
+            top: 40%;
+            right: 50px;
+            padding: 15px 30px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="con1 view">CONTENT1</div>
+        <div class="con2">CONTENT2</div>
+        <div class="con3">CONTENT3</div>
+        <div class="con4">CONTENT4</div>
+        <div class="con5">CONTENT5</div>
+    </div>
+    <button class="prev">PREV</button>
+    <button class="next">NEXT</button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        // 버튼으로 제어되는 fade In/Out Slider구현하기!
+        // 1) 보여지는 컨텐츠를 클래스명으로 식별하기
+        // $(".next").on("click", function() {
+        //     var i = $(".wrap .view").index();
+
+        //     if(i===$(".wrap div").length - 1){
+        //         $(".wrap div").eq(i).fadeOut().removeClass("view")
+        //         $(".wrap div").eq(0).fadeIn().addClass("view");
+        //     } else {
+        //         $(".wrap div").eq(i).fadeOut().removeClass("view");
+        //         $(".wrap div").eq(i+1).fadeIn().addClass("view");
+        //     }
+        // });
+
+        // 2) 인덱스 넘버를 순환시키기
+        var i = 0;//전역변수
+
+        $(".prev").on("click", function() {
+            if(i === 0){
+                i = $(".wrap div").length - 1;//4
+            } else {
+                i--;
+            }
+            $(".wrap div").eq(i).fadeIn()
+            $(".wrap div").eq(i).siblings().fadeOut();
+        });
+
+        $(".next").on("click", function() {
+            if(i===4){
+                i = 0;
+            } else {
+                i++;
+            }
+            $(".wrap div").eq(i).fadeIn()
+            $(".wrap div").eq(i).siblings().fadeOut();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <script>
+        /*
+            현재의 계절을 묻고 
+            봄: 과일티 증정!
+            여름 : 에이드 1+1!
+            가을 : 아이스아메리카노 1+1!
+            겨울 : 허브티 증정!
+        */
+
+        /*var weather = prompt("지금 계절은 ?")
+
+        if(weather == "봄"){
+            alert("과일티 증정!")
+        }else if(weather == "여름"){
+            alert("에이드 1+1 !")
+        }else if(weather == "가을"){
+            alert("아이스 아메리카노 1+1!")
+        }else if(weather == "겨울"){
+            alert("허브티 증정")
+        }*/
+
+        /*
+            제어문 - 2. 선택문(switch)
+                        선택문: 표현식의 대조를 통하여 
+                        어떤 실행코드로 이동시킬지 결정하는 구문
+
+                        switch(표현식){
+                            case 표현식1 : 표현식이 표현식1에 해당될 경우 실행 될 실행구문 
+                            break; >> 코드 블록을 탈출시키는 구문 
+                            case 표현식2 : 표현식2에 해당되는 경우 실행될 구문 
+                            break; 
+                            case 표현식 n : 표현식 n ~~~`
+                            break;
+                            default : 그 어떠한 표현식에도 해당되지 않는 구문 
+                        }
+        */
+
+
+        var phone = prompt("휴대전화 뒷자리4자리를 입력하세요")
+                console.log
+        switch(phone){
+            case "1111" : alert("아이폰12프로맥스 당첨")
+            break;
+            case "2222" : alert("아이패드 프로 당첨")
+            break;
+            case "3333" : alert("맥북 당첨")
+            break;
+            case "4444" :alert("아이맥 당첨")
+            break;
+            default : alert("꽝! 다음 기회에")
+        }
+    </script>
+</body>
+</html>

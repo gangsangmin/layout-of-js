@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height: 100px;
+            margin:20px auto;
+            background-color: seagreen;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+
+<script src= "js/jquery-3.6.0.min.js"></script>
+<script src= "js/jquery-ui.min.js"></script>
+<!--jQuery plug in 확장판 같은거임
+    무조건 기존연결 아래 해줘야함.
+-->
+<script>
+    //.animate();
+
+
+    $(".box1").on("click", function(){
+        $(".box1").animate({
+            "width" : "300px"
+        });
+    })
+
+
+    $(".box2").on("click",function(){
+        $(this).animate({
+            "width" : "300px"
+        },1000)
+    })
+
+
+    $(".box3").on("click",function(){
+        $(this).animate({
+            "width" : "300px"
+        }, 1000, function(){
+            //animate가 종료되고 나서 실행될 실행문이다.(콜백함수) >>>>>
+            $(this).css("backgroundColor","dodgerblue") // animate({속성},시간, 이징, 콜백)
+        })
+    }) //jQuery animate는 css랑 비교했을 때 무겁고 느리다. 렉이 많다. 다소 복잡한 과정을 갖는다 >>>> css가 훨씬 가볍다 
+    //그러나 콜백함수의 사용이 굉장히 용이하다.
+    
+
+    $(".box4").on("click",function(){
+        //jQuery 애니메이트는 몇몇 속성에 대한
+        //애니메이션이 안됨 >> jQuery-ui 플러그인 연결이 필요하다
+        //jquery ui를 연결하면 기타 여러가지 추가기능이 있음
+        $(this).animate({
+            "backgroundColor" : "red",
+            "width" : "300px"
+
+        },1500,"easeOutExpo") // 반드시 시간이랑 같이 사용해야된다
+                                //easings.net
+
+    })
+
+
+    $(".box5").on("mouseover",function(){
+        $(this).stop().animate({
+            "width" :"300px",
+            "height" : "200px"
+        },2000)
+    }).on("mouseout",function(){
+        $(this).stop().animate({
+            "width" :"100px",
+            "height":"100px"
+        },2000)
+    })
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+*{
+    list-style: none;
+    color: inherit;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+#wrap{
+    width: 1092px;
+    height: auto;
+    margin: 0;
+}
+.headar_w{
+    position: fixed;
+}
+.header_w img{
+    width: 100%;
+}
+.header_w h1{
+    position: absolute;
+    top: 73px;
+    left: 507px;
+    font-family:여기어때 잘난체 OTF;
+    color : #ff3333;
+    font-size: 45px;
+    z-index: 9999;
+}
+.gnb{
+    display: flex;
+    position: absolute;
+    top: 96px;
+    right: 210px;
+    color: #fff;
+}
+.gnb .more .back{
+    position: absolute;
+    left: -200px;
+    top: -20px;
+    width: 201px;
+    height: 300px;
+    background-color: #3d3b41;
+    border-radius: 25px;
+}
+.gnb .more i{
+    top: 0px;
+    right: -25px;
+    color: #fff;
+    font-size: 25px;
+}
+.gnb .more .up{
+    display: none;
+}
+.gnb > li{
+    margin: 0 15px;
+    font-size: 18px;
+}
+.gnb  :hover{
+    color: #ff3333;
+    font-weight: bold;
+    transition: all 0.5s;
+}
+.gnb .sub{
+    margin-top: 20px;
+}
+.gnb .sub > li{
+    margin: 5px 0 5px 0;
+}

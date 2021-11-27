@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12131313</title>
+    <style>
+        div{
+            height:400px;
+            background-color: palevioletred;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <button class="btn1-1"></button>
+    <button class="btn1-2"></button>
+    <button class="btn1-3"></button>
+    <hr>
+    <div class="box2"></div>
+    <button class="btn2-1"></button>
+    <button class="btn2-2"></button>
+    <button class="btn2-3"></button>
+
+
+
+    <script src= "js/jquery-3.6.0.min.js"></script>
+    <script src= "js/jquery-ui.min.js"></script>
+
+    <script>
+        //animate에 관련된 매서드
+        $(".btn1-1").on("click", function(){
+            $(".box1").slideUp(1000,function(){
+            //애니메이트 관련속성이기 때문에
+            //콜백 가능!   
+
+
+            //overflow :hidden
+            //height: x - > 0
+            //display : block - > none
+            
+            });
+        });
+        $(".btn1-2").on("click",function(){
+            $(".box1").slideDown();
+        })
+        //display:none -> block
+        //height:0; 
+        //overflow :hidden
+        //hegiht:0 -> x(특정한 사이즈)
+
+        $(".btn1-3").on("click",function(){
+            $(".box1").slideToggle();
+        })
+        
+
+        $(".btn2-1").on("click", function(){
+            $(".box2").fadeOut();
+        })
+
+        $(".btn2-2").on("click", function(){
+            $(".box2").fadeIn();
+        })
+
+        //display: none > block
+        //opacity : 0;
+        //opactiy : 0 > 1 (animate)
+
+        $(".btn2-3").on("click", function(){
+            $(".box2").fadeToggle();
+        })
+    </script>
+
+</body>
+</html>

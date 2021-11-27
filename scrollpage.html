@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style:none;
+        }
+        h1{
+            position:fixed;
+            top:20px;
+            left:20px;
+            color:#fff;
+            font-family: Nanumsquare;
+        }
+        .info{
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            padding: 25px;
+            transform-origin: left top;
+            transform: scale(0);
+            transition: transform 0.4s;
+        }
+
+        .info.on{transform: scale(1);}
+
+        .info .txt{
+            position: relative;
+            z-index: 999;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .info i{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 10px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .info::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            border-radius: 0 5px 5px 5px;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 5px 8px 0 rgba(0,255,255,0.35), -5px 0 8px rgba(255,0,255,0.35);
+            backdrop-filter: blur( 6.5px );
+        }
+        .gnb{
+            display:flex;
+            position:fixed;
+            top:20px;
+            right:20px;
+            
+        }
+
+        .gnb li{
+            margin-left:8px;
+            font-size:14px;
+            color:#fff;
+            font-family: Nanumsquare;
+            font-weight: bold;
+            
+           
+   
+
+        }
+
+        .gnb .on{
+            border-bottom:1px solid #000;
+            color:#000;
+        }
+
+        main section{
+            height: 100vh;
+            line-height: 100vh;
+            font-size:100px;
+            text-align: center;
+            font-family: Nanumsquare;
+            font-weight: bold; 
+        }
+
+        .s1{background-color: dodgerblue;}
+        .s2{background-color: royalblue;}
+        .s3{background-color: darkslateblue;}
+        .s4{background-color: darkslategrey;}
+        .s5{background-color: darkolivegreen;}
+
+      
+
+    </style>
+</head>
+
+<body>
+    <h1>logo</h1>
+    
+    <ul class="gnb">
+        <li>section1</li>
+        <li>section2</li>
+        <li>section3</li>
+        <li>section4</li>
+        <li>section5</li>
+    </ul>
+    <main>
+        <section class = "s1">SECTION1</section>
+        <section class = "s2">SECTION2</section>
+        <section class = "s3">SECTION3</section>
+        <section class = "s4">SECTION4</section>
+        <section class = "s5">SECTION5</section>
+    </main>
+    <script src = "js/jquery-3.6.0.min.js"></script>
+    <script>
+        //각li들을 클릭하면
+        //해당되는 섹션으로 스크롤바 이동시키기
+        //클릭된 li는 하이라이트 주기
+
+        $(".gnb li").on("click",function(){
+            $(this).addClass("on");
+            $(this).siblings().removeClass("on")
+
+
+            var i = $(this).index();//몇번째 클릭했는지 구하기
+
+            // 1. 윈도우 높이값 X 배수로 접근하기!
+            // var winHeight = $(window).height();//윈도우 높이값 구하기(= 각 섹션의 높이)           
+            // $("html, body").stop().animate({
+            //     "scrollTop" : winHeight * i
+            // });
+            // 각 섹션들을 모니터 높이값에 맞춘 상황에서만 가능
+
+            // 2. 각 섹션의 .offset() 위치를 활용하는 방법
+            
+            var secOffset = $("section").eq(i).offset().top    
+
+            $("html, body").stop().animate({
+            "scrollTop" : secOffset 
+            })
+           
+        })
+
+        //스크롤을 했을 때 스크롤 바가 일정 위치에 도달하면
+        //해당 섹션과 관계되는 li에 하이라이트하기!!
+
+ // Q2. 스크롤 바가 일정 위치에 도달하면
+        //     해당 섹션과 관계되는 li에 하이라이트하기
+        $(window).on("scroll", function() {
+            var scr = $(this).scrollTop();
+            //스크롤이 발생할 때 마다 스크롤 위치값 구하기
+            $(".info .txt span").text(scr)  
+            
+            if(scr >= $("section").eq(0).offset().top && scr < $("section").eq(1).offset().top){
+                $(".gnb li").eq(0).addClass("on").siblings().removeClass("on");
+            } else if(scr >= $("section").eq(1).offset().top && scr < $("section").eq(2).offset().top){
+                $(".gnb li").eq(1).addClass("on").siblings().removeClass("on");
+            } else if(scr >= $("section").eq(2).offset().top && scr < $("section").eq(3).offset().top){
+                $(".gnb li").eq(2).addClass("on").siblings().removeClass("on");
+            } else if(scr >= $("section").eq(3).offset().top && scr < $("section").eq(4).offset().top){
+                $(".gnb li").eq(3).addClass("on").siblings().removeClass("on");
+            } else if(scr >= $("section").eq(4).offset().top ){
+                $(".gnb li").eq(4).addClass("on").siblings().removeClass("on");
+            }  
+
+        })
+    </script>
+</body>
+</html>

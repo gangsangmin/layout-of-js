@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            display: flex;
+            padding: 0;
+            justify-content: center;
+            list-style: none;
+        }
+
+        li{
+            width: 20px;
+            height: 20px;
+            background-color: #aaa;
+            border-radius: 50%;
+            margin: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>    
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        // $(selector).index();
+        // 해당 선택자의 인덱스 순서를 가져옴.
+
+        $("ul li").on("click", function() {
+            var i = $(this).index();//클릭한 요소의 인덱스 순서를 가져옴
+            
+            $("ul li").css("backgroundColor","#aaa");
+            $("ul li").eq(i).css("backgroundColor","red");
+        });
+    </script>
+</body>
+</html>

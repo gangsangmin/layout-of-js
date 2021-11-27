@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+            background-color: rgba(0,0,0,0);
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        nav{
+            position: fixed;
+            top: 0;
+            left: -350px;
+            width: 350px;
+            height: 100%;
+            background-color: dodgerblue;
+            color: #fff;
+        }
+
+        nav .gnb > li{
+            border-bottom: 1px solid #fff;
+        }
+        nav .gnb > li > a{
+            display: block;
+            padding: 5px 15px;
+            background-color: rgba(0,0,0,0.2);
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+        nav .gnb > li .sub{
+            display: none;
+        }
+        nav .gnb > li .sub li a{
+            display: block;
+            padding: 5px 20px;
+        }
+
+
+        .toggle{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .toggle span{
+            display: block;
+            width: 35px;
+            height: 3px;
+            margin: 0 auto 4px;
+            background-color: #000;
+        }
+
+        .toggle span:last-child{
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="gnb">
+            <li>
+                <a href="#">MAIN MENU #1</a>
+                <ul class="sub">
+                    <li><a href="#">Sub Menu 1</a></li>
+                    <li><a href="#">Sub Menu 2</a></li>
+                    <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">MAIN MENU #2</a>
+                <ul class="sub">
+                    <li><a href="#">Sub Menu 1</a></li>
+                    <li><a href="#">Sub Menu 2</a></li>
+                    <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">MAIN MENU #3</a>
+                <ul class="sub">
+                    <li><a href="#">Sub Menu 1</a></li>
+                    <li><a href="#">Sub Menu 2</a></li>
+                    <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">MAIN MENU #4</a>
+                <ul class="sub">
+                    <li><a href="#">Sub Menu 1</a></li>
+                    <li><a href="#">Sub Menu 2</a></li>
+                    <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">MAIN MENU #5</a>
+                <ul class="sub">
+                    <li><a href="#">Sub Menu 1</a></li>
+                    <li><a href="#">Sub Menu 2</a></li>
+                    <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <button class="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        var toggle = true;
+        $(".toggle").on("click", function() {
+            toggle = !toggle;
+
+            if(toggle == false){
+                $("nav").stop().animate({
+                    "left" : 0
+                });
+            } else {
+                $("nav").stop().animate({
+                    "left" : "-350px"
+                })
+            }
+        });
+
+
+        $("nav .gnb > li > a").on("click",function(){
+            $(this).siblings(".sub").slideToggle()
+            $(this).parents().siblings().find(".sub").slideUp();
+        })
+
+       
+    </script>
+</body>
+</html>

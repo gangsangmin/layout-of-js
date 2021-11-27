@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{padding-bottom: 1000px;}
+
+        .box{
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background-color: dodgerblue;
+        }        
+
+        ul{
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li{
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 20px 10px;
+        }
+
+        .switch{
+            width: 50px;
+            height: 120px;
+            background-color: #aaa;
+            border: 10px solid #ddd;
+            border-style: outset;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="switch"></div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        //click
+        $(".box").on("click",function(){
+            // console.log("clicked!!");
+            $(this).css("backgroundColor","magenta");
+        }) 
+
+        // 클릭한 "li만" 색상 바뀌기!!!!
+        $("ul li").on("click", function() {
+            $("ul li").css("backgroundColor","#ccc");
+            $(this).css("backgroundColor","red");
+            // $(this).siblings().css("backgroundColor","#ccc");
+        })
+
+        // switch를 클릭하면 색상 바뀌고,
+        // 다시 한번 클릭하면 기존 스타일로 돌아오기
+
+        /*
+        var toggle = "off";
+        $(".switch").on("click", function() {
+            if(toggle == "off"){
+                $(this).css({
+                    "backgroundColor" : "#888",
+                    "borderStyle" : "inset"
+                });
+                toggle = "on";
+            } else if(toggle == "on"){
+                $(this).css({
+                    "backgroundColor" : "#aaa",
+                    "borderStyle" : "outset"
+                });
+                toggle = "off";
+            }
+        })
+        */
+
+
+        /*
+        $(".switch").on("click", function(){
+            var color= $(this).css("backgroundColor")
+            if(color == "rgb(170, 170, 170)"){
+                $(this).css("backgroundColor","red");
+            }else{
+                $(this).css("backgroundColor", "#aaa");
+            }
+            })
+        */
+
+            //css의 매서드의 역할은 스타일을 지정하거나 
+            //특정 속성의 속성값을 구할 수 있다
+
+
+
+        var toggle = true;
+        $(".switch").on("click",function(){
+            toggle = !toggle;
+            if(toggle == true){
+                $(this).css("backgroundColor","red");
+            }else{
+                $(this).css("backgroundColor","#aaa");
+            }
+        })
+    </script>
+</body>
+</html>

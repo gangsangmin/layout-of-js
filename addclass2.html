@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            margin: 10px auto;
+            background-color: #ccc;
+        }
+
+        .box2.expand{
+            transition: width 0.4s;
+            width: 150px;
+        }
+
+        .box3.play{
+            animation:expanding 0.4s infinite alternate;
+        }
+        /* animate는 원래되로 회귀되려고함. */
+
+        @keyframes expanding{
+            0%{width:50px}
+            100%{width:150px}
+        }
+    </style>
+
+    <!--
+        단편적인거는 제이쿼리 
+        계속 되는거 할때는 키프레임
+    -->
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(".box1").on("click", function() {
+            $(this).animate({
+                "width" : 150
+            });
+        });
+
+        $(".box2").on("click", function() {
+            $(this).addClass("expand")
+        });
+
+        $(".box3").on("click",function(){
+            $(this).addClass("play");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0910</title>
+</head>
+<body>
+    <script>
+        /*
+            정말 탈퇴하시겠습니까를 묻고
+            사용자가 확인을 누르면 접속하신 비밀번호를 물은 다음 
+            입력받은 비밀번호가 12341234이면 
+            정상탈퇴 되었습니다.
+            틀릴 경우, 비밀번호를 확인해주세요 
+
+            사용자가 취소를 누르면 
+            탈퇴가 취소되었습니다.
+
+        */
+        // var frontout = confirm("탈퇴하시겠습니까")
+        
+        
+        // if(frontout){
+        //     var logOut = prompt("비밀번호를 입력하세요")
+            
+        //     if( logOut == 12341234){
+        //         alert("정상탈퇴 되었습니다.")
+        //     }else{
+        //         alert("비밀번호를 확인해주세요")
+        //     }
+        // }else{
+        //     alert("탈퇴가 취소되었습니다.")
+        // }
+        /*
+            금도끼 은도끼
+            산신령: 이 금도끼 니꺼냐?
+            나무꾼: 네 > 산 : 이놈 !
+                아니오 > 산 : 그럼 은도끼가 니꺼냐?
+
+
+                 
+                아니오 > 산 : 그럼 쇠도끼가 니꺼냐?
+                네 > 산 : 산다가져라
+
+
+        */
+        
+        var dok2 = confirm("금도끼 니꺼임?")
+        if(dok2){
+            alert("떽!")
+        }else{
+            var silver = confirm("그럼 은이냐?")
+
+            if(silver){
+                alert("이놈!")
+
+
+
+                
+            }else{
+                var iron =confirm("그럼 쇠도끼가 니꺼냐?")
+
+                if(iron){
+                    alert("고놈 착하구나 다가져")
+                }else{
+                    alert("바보니?")
+                }
+                
+            }
+        }
+
+    </script>
+</body>
+</html>

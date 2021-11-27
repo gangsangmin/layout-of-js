@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    h1{
+        padding:0;
+        text-align: center;
+
+    }
+
+    .output{
+        width: 1000px;
+        height: 50px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+        border: 2px solid #000;
+        border-radius: 100px;
+        margin:30px auto;
+    }
+
+    .btn{
+        text-align: center;
+
+    }
+
+    .btn button{
+        padding:3px 18px;
+        border-radius: 50px;
+
+    }
+</style>
+<body>
+    <h1>word match puzzle!</h1>
+    <div class="output"></div>
+    <div class="btn">
+        <button>만세</button>
+        <button>우리나라</button>
+        <button>보우하사</button>
+        <button>동해물과</button>
+        <button>하느님이</button>
+        <button>닳도록</button>
+        <button>백두산이</button>
+        <button>마르고</button>
+    </div>
+
+    <script src ="js/jquery-3.6.0.min.js"></script>
+
+    <script>
+            
+        var answer = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세";
+
+        $(".btn button").on("click", function() {
+            var txt = $(this).text();
+            console.log(txt);
+            
+            var selTxt = $(".output").text()+" "+ txt;
+            
+            var selTxt = selTxt.trim();
+            $(".output").text(selTxt)
+            
+           
+           
+            var clickAnswer = $(".output").text(); 
+            console.log(clickAnswer);
+
+
+            if(clickAnswer == answer) {
+                alert("정답입니다.");
+            }
+        });       
+    </script>
+</body>
+</html>

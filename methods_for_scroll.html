@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+
+        }
+
+        #wrap{
+            height: 800vh;
+            background:linear-gradient(45deg, cyan, lawngreen);
+            position:relative;
+
+        }
+
+        .output1{
+            position:fixed;
+            top:50px;
+            left:50px;
+            font-size:22px;
+            color:#fff;
+        }
+
+        .output2{
+            position:absolute;
+            bottom:322px;
+            left:123px;
+            width:100px;
+            height: 10px;
+            background-color: dodgerblue;
+            
+        }
+
+
+        .btn{
+            position:fixed;
+            bottom:30px;
+            right:30px;
+            background-color: #000;
+            color:#fff;
+            line-height: 30px;
+            text-align: center;
+            padding:15px;
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="output1"></div>
+        <div class="output2"></div>
+        <div class="btn">TOP</div>
+    </div>
+
+
+    <script src ="js/jquery-3.6.0.min.js"></script>
+    <script>
+        /*
+            scroll event
+            선택지를 대개 window를 주로 잡음
+
+            *주의 
+            scroll event는 마우싀 휠과 무관하다.
+            
+        */
+
+        //스크롤바의 수직위치값을 구하는 매서드 
+
+        $(window).on("scroll",function(){
+            var scr =$(this).scrollTop();
+            $(".output1").text(scr+"px")
+
+        })
+
+
+        //선택자와 문서 최상단과의 거리를 구하는거 
+
+        //.offset().top
+        //.offset().left 잘안씀
+
+
+        var boxOffset = $(".output2").offset().top
+        $(".output2").text(boxOffset + "px");
+
+
+        //버튼 누르면 문서 최상단으로 스크롤바 이동
+        //.scrollTop(n); 위치지정 할 수 있음
+         $(".btn").on("click",function(){
+              //스크롤바를 애니메이트 매서드로 
+            //움직이는 방법
+            //애니메이트 속성 : "scrollTop"
+            //선택자는 무조건  "html,body"
+            $("html,body").animate({
+            "scrollTop" : 0
+        });
+        //     $(window).scrollTop(0);애니메이트는 안됨
+        })
+
+       
+
+
+            
+    </script>
+</body>
+</html>

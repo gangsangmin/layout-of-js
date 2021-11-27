@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap{
+            height: 600px;
+            border: 5px solid red;
+            margin: 0 auto;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .wrap .track{
+            display: flex;
+            flex-wrap: wrap;
+            /* width: 5000px; */
+            position: relative;
+        }
+
+        .wrap .track div{
+            height: 600px;
+            line-height: 600px;
+            text-align: center;
+            font-size: 150px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .wrap .track .con1{background-color: #222;}
+        .wrap .track .con2{background-color: #444;}
+        .wrap .track .con3{background-color: #666;}
+        .wrap .track .con4{background-color: #888;}
+        .wrap .track .con5{background-color: #aaa;}
+
+        .prev{
+            position: fixed;
+            top: 40%;
+            left: 50px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .next{
+            position: fixed;
+            top: 40%;
+            right: 50px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .auto{
+            position: fixed;
+            top: 50px; left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid #888; border-radius: 100px;
+            border-style: outset;
+            width: 84px; height: 34px;
+            box-sizing: content-box;
+        }
+
+        .auto p{
+            width: 100%;
+            height: 100%;
+            background-color: orangered;
+            border-radius: 100px;
+            transition: all 0.4s;
+        }
+
+        .auto p::after{
+            transition: all 0.4s;
+            content: '';
+            display: block;
+            width: 30px; height: 30px;
+            background-color: #444;
+            border-radius: 50%;
+            position: relative;
+            top: 2px;
+            left: 2px;
+        }
+
+        .auto.play p{background-color: lawngreen;}
+        .auto.play p::after{left: 52px;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="track">
+            <div class="con1">CONTENT1</div>
+            <div class="con2">CONTENT2</div>
+            <div class="con3">CONTENT3</div>
+            <div class="con4">CONTENT4</div>
+            <div class="con5">CONTENT5</div>
+        </div>
+    </div>
+    <button class="prev"><<</button>
+    <button class="next">>></button>
+    <button class="auto">
+        <p></p>
+    </button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        var sliderWidth = $(window).width();
+        var toggle = true;
+        var autoPlay;
+        
+        function setSlider() {
+                sliderWidth = $(window).width();
+            var sliderLen = $(".track div").length;
+            var trackWidth = sliderWidth * sliderLen;
+            $(".track").width(trackWidth);
+            $(".track div").width(sliderWidth);
+            $(".track").css("marginLeft",-sliderWidth)
+        }
+
+        function sliderCtrl(d) {
+            $(".track").stop().animate({
+                "left" : d * sliderWidth
+            }, function() {
+                $(".track").css("left",0);
+                if(d > 0) {//prev
+                    $(".track div").last().prependTo(".track");
+                } else if(d < 0) {//next
+                    $(".track div").first().appendTo(".track");
+                }
+            })
+        }
+
+        $(".auto").on("click", function() {
+            toggle = !toggle;
+            if(!toggle){
+                $(this).addClass("play");
+                autoPlay = setInterval(function() {
+                    sliderCtrl(-1);
+                }, 3000);
+            } else {
+                $(this).removeClass("play");
+                clearInterval(autoPlay);
+            }
+        })
+        
+        $(".next").on("click", function() {
+            sliderCtrl(-1);
+        });
+
+        $(".prev").on("click", function() {
+            sliderCtrl(1);
+        });
+
+        /*
+            swipe
+            1. 터치 시작 (mousedown vs touchstart)
+            2. 터치 된 상태로 이동 (mousemove vs touchmove)
+            3. 터치 종료 (mouseup vs touchend)
+        */
+
+        // function dragInit (){
+        //     var x0;//최초 위치
+
+        // }
+
+        var x0 = null;//초기위치
+        function dragStart(event) {
+            x0 = event.pageX || event.originalEvent.changedTouches[0].pageX;
+        }   
+        function dragMove(event) {
+            if(x0){//초기값(드래그 시작)에 값이 있을 때만 작동!
+                var x1 = event.pageX || event.originalEvent.changedTouches[0].pageX;;//드래그시 실시간 좌표
+                var distance = x1 - x0;
+                $(".track").css("left",distance);
+            }            
+        }
+        function dragEnd(event) {
+            var x2 = event.pageX || event.originalEvent.changedTouches[0].pageX;;//최종위치
+            var direction = x2 - x0;
+            var checkRange = (function(){
+                if(Math.abs(direction) >= sliderWidth / 3){
+                    return true;
+                } else {
+                    return false;
+                }
+            } ());//작동 할지말지 결정
+
+            if(direction < 0 && checkRange){ //drag left
+                sliderCtrl(-1);
+            } else if(direction > 0 && checkRange) { //drag right
+                sliderCtrl(1);
+            } else { //미충족시
+                $(".track").stop().animate({"left": 0});
+            } //슬라이더 작동
+            x0 = null; //초기값 초기화
+        }
+
+        $(".wrap").on("mousedown", function(e) {
+            dragStart(e)
+        })
+        $(".wrap").on("touchstart", function(e) {
+            dragStart(e)
+        });
+        $(".wrap").on("touchmove", function(e) {
+            dragMove(e);
+        });
+        $(".wrap").on("mousemove", function(e) {
+            dragMove(e);
+        })
+        $(".wrap").on("touchend", function(e) {
+            dragEnd(e);
+        });
+        $(".wrap").on("mouseup", function(e) {
+            dragEnd(e);
+        });
+
+        function init(){
+            $(window).resize(setSlider);
+            setSlider();
+            $(".track div:last-child").prependTo(".track");
+        }
+
+        init();//페이지 최초 로드시 실행.
+    </script>
+</body>
+</html>

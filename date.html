@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //시간 생성자 함수 javaScript엔진이 갖고 있는 시간을 객체로 불러옴
+        var now = new Date();
+        
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var _date = now.getDate();
+        var day = now.getDay();
+        var hour = now.getHours();
+        var mins = now.getMinutes();
+        var secs = now.getSeconds();
+        
+        var dayList = ["일","월","화","수","목","금","토"]
+        
+
+        
+        console.log(year, month, _date, day, hour, mins, secs)
+    
+        //0000년 00월 00일 0요일 00시 00분 00초
+
+        if(hour>12){
+            hour=hour-12;
+            
+        }else{
+            hour;
+        }
+
+        if(mins<10){
+            mins="0"+mins
+        }else{
+            mins;
+            
+        }
+
+        if(secs<10){
+            secs="0"+secs;
+        }
+        else{
+            secs;
+        }
+
+        document.write(year+"년"+(month+1)+"월"+_date+"일"+dayList[day]+"요일"+hour+"시"+mins+"분"+secs+"초")
+        
+        
+        
+  
+
+
+    </script>
+</body>
+</html>
